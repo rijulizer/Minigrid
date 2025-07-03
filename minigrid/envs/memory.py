@@ -131,13 +131,15 @@ class MemoryEnv(MiniGridEnv):
 
         # Place objects
         start_room_obj = self._rand_elem([Key, Ball])
-        self.grid.set(1, height // 2 - 1, start_room_obj("green"))
+        self.grid.set(
+            1, height // 2 - 1, start_room_obj()
+        )  # TODO: start_room_obj("green")
 
         other_objs = self._rand_elem([[Ball, Key], [Key, Ball]])
         pos0 = (hallway_end + 1, height // 2 - 2)
         pos1 = (hallway_end + 1, height // 2 + 2)
-        self.grid.set(*pos0, other_objs[0]("green"))
-        self.grid.set(*pos1, other_objs[1]("green"))
+        self.grid.set(*pos0, other_objs[0]())  # TODO: "green"
+        self.grid.set(*pos1, other_objs[1]())  # TODO: "green"
 
         # Choose the target objects
         if start_room_obj == other_objs[0]:

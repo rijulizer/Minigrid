@@ -259,7 +259,7 @@ class Key(WorldObj):
 
 
 class Ball(WorldObj):
-    def __init__(self, color="blue"):
+    def __init__(self, color="green"):
         super().__init__("ball", color)
 
     def can_pickup(self):
