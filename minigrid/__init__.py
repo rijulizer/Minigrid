@@ -189,6 +189,41 @@ def register_minigrid_envs():
         entry_point="minigrid.envs:EmptyEnv",
         kwargs={"size": 16},
     )
+    # orinetation 1: Agent starts upper right corner, goal at lower left corner
+    # color Red agent, Green goal,
+    # "agent_start_pos": (C, R) [1-6]
+    register(
+        id="MiniGrid-Empty-8x8-CRG-O1",
+        entry_point="minigrid.envs:EmptyEnv",
+        kwargs={
+            "size": 8,
+            "agent_start_pos": (6, 1),
+            "agent_start_dir": 0,
+            "goal_pos": (1, 6),
+        },
+    )
+    # orinetation 2: Agent starts lower right corner, goal at upper left corner
+    register(
+        id="MiniGrid-Empty-8x8-CRG-O2",
+        entry_point="minigrid.envs:EmptyEnv",
+        kwargs={
+            "size": 8,
+            "agent_start_pos": (6, 6),
+            "agent_start_dir": 0,
+            "goal_pos": (1, 1),
+        },
+    )
+    # orinetation 2: Agent starts lower right corner, goal at upper right corner
+    register(
+        id="MiniGrid-Empty-8x8-CRG-O3",
+        entry_point="minigrid.envs:EmptyEnv",
+        kwargs={
+            "size": 8,
+            "agent_start_pos": (1, 6),
+            "agent_start_dir": 0,
+            "goal_pos": (6, 1),
+        },
+    )
 
     # Fetch
     # ----------------------------------------
