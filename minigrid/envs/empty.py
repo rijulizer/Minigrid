@@ -70,12 +70,13 @@ class EmptyEnv(MiniGridEnv):
         size=8,
         agent_start_pos=(1, 1),
         agent_start_dir=0,
+        goal_pos=None,  # defaults to bottom-right corner
         max_steps: int | None = None,
         **kwargs,
     ):
         self.agent_start_pos = agent_start_pos
         self.agent_start_dir = agent_start_dir
-
+        self.goal_pos = goal_pos
         mission_space = MissionSpace(mission_func=self._gen_mission)
 
         if max_steps is None:
@@ -101,8 +102,11 @@ class EmptyEnv(MiniGridEnv):
         # Generate the surrounding walls
         self.grid.wall_rect(0, 0, width, height)
 
-        # Place a goal square in the bottom-right corner
-        self.put_obj(Goal(), width - 2, height - 2)
+        if self.goal_pos is not None:
+            self.put_obj(Goal(), self.goal_pos[0], self.goal_pos[1])
+        else:
+            # Place a goal square in the bottom-right corner
+            self.put_obj(Goal(), width - 2, height - 2)
 
         # Place the agent
         if self.agent_start_pos is not None:
